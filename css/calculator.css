@@ -1,0 +1,108 @@
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.bg {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-image: linear-gradient(to top, #bdc2e8 0%, #bdc2e8 1%, #e6dee9 100%);
+    animation: BG-color 7s infinite;
+    animation-direction: alternate-reverse;
+    overflow: hidden;
+}
+
+@keyframes BG-color {
+    from {
+        filter: hue-rotate(180deg);
+    }
+    to {
+        filter: hue-rotate(0deg);
+    }
+}
+
+.container {
+    transform: scale(0.9);
+    height: 100vh;
+    vertical-align: middle;
+}
+
+/* 計算機框架 */
+
+.calBody {
+    margin: auto;
+    height: 650px;
+    background-image: linear-gradient(#313131 0%, #2b2b2b 100%);
+    border-radius: 50px;
+    padding-top: 30px;
+    box-shadow: 0px 5px 5px rgb(255, 255, 255, 0.2) inset, 0px -8px 5px rgba(0, 0, 0, 0.5) inset, /* 內部陰影 */
+    0px 0px 1px 2px rgb(0, 0, 0) inset, 0px 0px 5px 5px rgb(99, 99, 99, 0.3) inset, 0px 0px 2px 3px #202020, 0px 0px 2px 6px rgb(73, 73, 73, .5), 0px 0px 0px 9px #161616, 0px 10px 10px 8px rgba(0, 0, 0, 0.5), 0px -10px 10px rgba(255, 255, 255);
+    /* 最底部陰影 */
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.btn {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: linear-gradient(to top, #525252 0%, #1f1f1f 100%);
+    border: 2px solid #3a3a3a;
+    box-shadow: 0px 0px 1px 0.5px #3a3a3a inset, 0px 0px 1px 6px #1f1f1f, 0px 0px 1.5px 5.5px #969696;
+    filter: blur(0.2px);
+    color: #ff9e93;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.btn-equal {
+    background: linear-gradient(to top, #e4877f 0%, #9e4b4b 100%);
+    box-shadow: 0px 0px 1px 0.5px #e4877f inset, 0px 0px 1px 6px #1f1f1f, 0px 0px 1.5px 5.5px #969696;
+    border: 2px solid #e4877f;
+    color: #ffffff;
+    height: 130px;
+    margin-top: 5px;
+}
+
+.btn-AC {
+    background: linear-gradient(to top, #e4877f 0%, #9e4b4b 100%);
+    box-shadow: 0px 0px 1px 0.5px #e4877f inset, 0px 0px 1px 6px #1f1f1f, 0px 0px 1.5px 5.5px #969696;
+    border: 2px solid #e4877f;
+    color: #ffffff;
+}
+
+.row {
+    width: 400px;
+}
+
+.adjustment {
+    height: 95%;
+}
+
+/* 螢幕 */
+
+.screen-text {
+    background-image: linear-gradient(to top, #292929 0%, rgb(34, 34, 34) 100%);
+    margin-bottom: 20px;
+    line-height: 80px;
+    padding: 30px;
+    border-radius: 20px;
+    overflow-wrap: break-word;
+    box-shadow: 0px 0px 5px 4px rgb(0, 0, 0) inset, 0px 0px 3px 3px rgb(94, 94, 94, 0.2);
+}
+
+#screen-num {
+    color: rgb(207, 207, 207);
+    text-align: end;
+    height: 50px;
+
+}
+  
+  
+
+#screen-cal {
+    color: rgb(138, 138, 138);
+    height: 30px;
+    text-align: end;
+}

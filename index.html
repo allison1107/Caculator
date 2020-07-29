@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計算機</title>
+
+    <meta charset="UTF-8">
+    <!-- BS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- icon -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/calculator.css">
+
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- 調整背景用 -->
+    <div class="bg">
+    </div>
+
+
+    <div class="container d-flex">
+
+        <!-- 計算機框架 -->
+        <div class="calBody row text-center justify-content-center d-flex align-items-center">
+
+            <!-- 計算機調整 -->
+            <div class="adjustment  row justify-content-center d-flex w-100 ">
+                <div class="col-12 screen p-0">
+                    <div class="screen-text">
+
+                        <!-- 儲存目前算式 -->
+                        <h6 id="screen-cal"></h6>
+
+                        <!-- 顯示結果 -->
+                        <h2 id="screen-num">0</h2>
+                    </div>
+
+                    <!-- 按鈕 -->
+                </div>
+                <div class="col-3"><button onclick="btnClear('C')"
+                        class="btn rounded-pill btn-AC btn-secondary">C</button>
+                </div>
+                <div class="col-3"><button onclick="btnClear('CE')" class="btn btn-dark rounded-circle">CE</button>
+                </div>
+                <div class="col-3"><button onclick="btnNum('back')" class="btn btn-dark rounded-circle">⤎</button>
+                </div>
+                <div class="col-3"><button onclick="btnCal('÷')" class="btn btn-dark rounded-circle">÷</button>
+                </div>
+                <div class="col-3"><button onclick="btnNum('7')" class="btn btn-dark rounded-circle">7</button>
+                </div>
+                <div class="col-3"><button onclick="btnNum('8')" class="btn btn-dark rounded-circle">8</button></div>
+                <div class="col-3"><button onclick="btnNum('9')" class="btn btn-dark rounded-circle">9</button></div>
+                <div class="col-3"><button onclick="btnCal('x')" class="btn btn-dark rounded-circle">x</button></div>
+                <div class="col-3"><button onclick="btnNum('4')" class="btn btn-dark rounded-circle">4</button></div>
+                <div class="col-3"><button onclick="btnNum('5')" class="btn btn-dark rounded-circle">5</button></div>
+                <div class="col-3"><button onclick="btnNum('6')" class="btn btn-dark rounded-circle">6</button></div>
+                <div class="col-3"><button onclick="btnCal('-')" class="btn btn-dark rounded-circle">-</button>
+                </div>
+
+                <div class="row col-9 d-flex px-0">
+                    <div class="col-4"><button onclick="btnNum('1')" class="btn btn-dark rounded-circle">1</button>
+                    </div>
+                    <div class="col-4"><button onclick="btnNum('2')" class="btn btn-dark rounded-circle">2</button>
+                    </div>
+                    <div class="col-4"><button onclick="btnNum('3')" class="btn btn-dark rounded-circle">3</button>
+                    </div>
+                    <div class="col-4"><button onclick="btnNum('0')" class="btn btn-dark rounded-circle">0</button>
+                    </div>
+                    <div class="col-4"><button onclick="btnNum('.')" class="btn btn-dark rounded-circle">.</button>
+                    </div>
+                    <div class="col-4"><button onclick="btnCal('+')"
+                            class="btn btn-dark rounded-circle btn-plus">+</button></div>
+                </div>
+                <div class=" col-3 d-flex justify-content-end pr-0">
+                    <button onclick="btnCal('=')" class="btn rounded-pill btn-equal btn-secondary">=</button>
+
+                </div>
+            </div>
+
+
+        </div>
+        <!-- 計算機結束 -->
+
+    </div>
+
+
+
+
+    <script>
+
+        var Total = 0;   //總和 //目前顯示
+        var newNum = document.getElementById('screen-num');   //目前輸入
+        var Num = '0'
+        var Mark = ''
+        var count = [0, 'noMark', '0', 'add'];
+
+
+
+
+        function btnNum(Num) {
+
+
+            if (document.getElementById('screen-cal').innerHTML.indexOf('=') != -1) {
+                    document.getElementById('screen-cal').innerHTML=Total.toString();
+                }
+
+            // console.log(count);
+            // console.log(newNum.innerHTML);
+
+            if (count[3] == 'add') {
+                newNum.innerHTML = '';
+
+            }
+
+            if (newNum.innerHTML == "0") {
+                newNum.innerHTML = '';
+            }
+
+
+
+
+
+
+            if (Num != 'back' && Num != '.') {
+                newNum.innerHTML =
+                    newNum.innerHTML + Num;
+
+            } else if (Num == '.') {
+                if (newNum.innerHTML.indexOf('.') != -1) {
+
+                } else {
+                    newNum.innerHTML =
+                        newNum.innerHTML + Num;
+                }
+            }
+
+            else {
+
+                newNum.innerHTML = newNum.innerHTML.slice(0, length - 1);
+
+
+                if (newNum.innerHTML.length == 0) {   //判斷如果刪到沒東西的話，顯示為0
+                    newNum.innerHTML = '0';
+                }
+
+
+            }
+
+            count[3] = 'none'
+            count[2] = newNum.innerHTML;
+        }
+
+
+
+        function btnCal(Mark) {
+
+
+
+
+            // 甚麼都沒按
+            if (count[3] != 'add') {
+
+
+                if (document.getElementById('screen-cal').innerHTML.indexOf('=') != -1) {
+                    document.getElementById('screen-cal').innerHTML=Total.toString();
+                }
+
+
+
+                // 如果畫面只有一個點
+                if (newNum.innerHTML == ".") {
+                    count[2] = '0';
+                    document.getElementById('screen-cal').innerHTML = "0"
+                } else {
+
+                    document.getElementById('screen-cal').innerHTML =
+                        document.getElementById('screen-cal').innerHTML + count[2];
+                }
+
+
+                // 初始
+                if (count[1] == 'noMark') {
+                    Total = parseFloat(count[0]) + parseFloat(count[2])
+                    count[0] = Total.toString();
+
+                    document.getElementById('screen-cal').innerHTML =
+                        document.getElementById('screen-cal').innerHTML + Mark;
+
+
+                    // +
+                } else if (count[1] == '+') {
+                    document.getElementById('screen-cal').innerHTML =
+                        document.getElementById('screen-cal').innerHTML + Mark;
+
+                    Total = parseFloat(count[0]) + parseFloat(count[2])
+                    count[0] = Total.toString();
+
+                    // x
+                } else if (count[1] == 'x') {
+
+
+                    document.getElementById('screen-cal').innerHTML =
+                        document.getElementById('screen-cal').innerHTML + Mark;
+
+                    if (count[1] == 'noMark') {
+                        count[0] = 1
+                    }
+                    Total = parseFloat(count[0]) * parseFloat(count[2])
+                    count[0] = Total.toString();
+
+
+                    // -
+                } else if (count[1] == '-') {
+
+                    document.getElementById('screen-cal').innerHTML =
+                        document.getElementById('screen-cal').innerHTML + Mark;
+
+
+                    Total = parseFloat(count[0]) - parseFloat(count[2])
+
+                    count[0] = Total.toString();
+
+
+                    // ÷
+                } else if (count[1] == '÷') {
+
+                    document.getElementById('screen-cal').innerHTML =
+                        document.getElementById('screen-cal').innerHTML + Mark;
+
+
+                    Total = parseFloat(count[0]) / parseFloat(count[2])
+
+                    count[0] = Total.toString();
+
+
+                    // =
+                } else if (count[1] == '=') {
+
+                    document.getElementById('screen-cal').innerHTML =
+                        document.getElementById('screen-cal').innerHTML + Mark;
+
+                    count[0] = Total.toString();
+
+                }
+
+                // 不讓符號重新出現
+            } else {
+
+                document.getElementById('screen-cal').innerHTML =
+                    document.getElementById('screen-cal').innerHTML.slice(0, length - 1) + Mark
+            }
+
+
+
+
+
+
+
+            count[3] = 'add';
+            newNum.innerHTML = count[0];
+            count[1] = Mark;
+
+
+
+
+            console.log(count)
+        }
+
+
+
+
+
+        // 清空
+        function btnClear(Clean) {
+
+            newNum.innerHTML = '0';
+
+
+            // 全部清空
+            if (Clean == "C") {
+                document.getElementById('screen-cal').innerHTML = "";
+                count = [0, 'noMark', '0', 'add'];
+            }
+
+            // 清空一部分
+            else {
+
+            }
+
+
+
+        }
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
